@@ -974,6 +974,383 @@
       nav, .whatsapp-fab, .lightbox { display: none !important; }
       section { padding: 40px 20px; }
     }
+
+/* ── COUNTDOWN BANNER ── */
+.countdown-banner {
+  background: linear-gradient(135deg, var(--navy) 0%, #1a3a8a 100%);
+  border-bottom: 3px solid var(--gold);
+  padding: 14px 32px;
+  position: sticky;
+  top: 56px;
+  z-index: 900;
+}
+.cb-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.cb-label { color: rgba(255,255,255,.85); font-size: 13px; font-weight: 800; }
+.cb-timer {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.cb-unit { text-align: center; }
+.cb-unit span {
+  display: block;
+  font-family: 'Bangers', cursive;
+  font-size: 28px;
+  color: var(--gold);
+  line-height: 1;
+  min-width: 38px;
+}
+.cb-unit small { font-size: 9px; font-weight: 800; color: rgba(255,255,255,.5); text-transform: uppercase; letter-spacing: 1px; }
+.cb-sep { font-family: 'Bangers', cursive; font-size: 24px; color: var(--gold); opacity: .5; margin-bottom: 12px; }
+.cb-cta {
+  background: var(--gold);
+  color: var(--navy);
+  font-weight: 900;
+  font-size: 13px;
+  padding: 8px 18px;
+  border-radius: 20px;
+  text-decoration: none;
+  transition: background .2s, transform .2s;
+  white-space: nowrap;
+}
+.cb-cta:hover { background: var(--gold2); transform: scale(1.05); }
+@media (max-width: 600px) { .countdown-banner { top: 52px; } .cb-unit span { font-size: 22px; } }
+
+/* ── PROGRESS TRACKER ── */
+.prog-hero {
+  background: var(--white);
+  border-radius: 24px;
+  padding: 32px;
+  box-shadow: var(--shadow-lg);
+  margin-bottom: 24px;
+  border: 1px solid rgba(13,31,78,.08);
+}
+.prog-numbers {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 24px;
+  text-align: center;
+}
+@media (max-width: 600px) { .prog-numbers { grid-template-columns: 1fr 1fr; } .prog-pct-wrap { display: none; } }
+.prog-amount {
+  font-family: 'Bangers', cursive;
+  font-size: 40px;
+  color: var(--navy);
+  letter-spacing: 1px;
+  line-height: 1;
+}
+.prog-amount.gold { color: var(--gold); }
+.prog-sublabel { font-size: 11px; font-weight: 800; color: var(--gray); text-transform: uppercase; letter-spacing: 1.5px; margin-top: 4px; }
+.prog-pct { font-family: 'Bangers', cursive; font-size: 52px; color: var(--teal); line-height: 1; }
+.prog-bar-wrap { margin-bottom: 16px; }
+.prog-bar-track {
+  position: relative;
+  height: 28px;
+  background: #e8edf5;
+  border-radius: 14px;
+  overflow: visible;
+}
+.prog-bar-fill {
+  height: 100%;
+  border-radius: 14px;
+  background: linear-gradient(90deg, var(--teal) 0%, var(--gold) 60%, #ff9900 100%);
+  box-shadow: 0 0 20px rgba(245,162,0,.4);
+  transition: width 1.5s cubic-bezier(.4,0,.2,1);
+  position: relative;
+  min-width: 0;
+}
+.prog-bar-fill::after {
+  content: '';
+  position: absolute;
+  top: 0; right: 0; bottom: 0;
+  width: 60px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.35));
+  animation: shimmer 2s infinite;
+  border-radius: 0 14px 14px 0;
+}
+@keyframes shimmer { 0%,100% { opacity:.5; } 50% { opacity:1; } }
+.prog-milestone {
+  position: absolute;
+  top: -28px;
+  transform: translateX(-50%);
+  font-size: 10px;
+  font-weight: 800;
+  color: var(--gray);
+  white-space: nowrap;
+}
+.prog-milestone::before {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1px;
+  height: 36px;
+  background: rgba(13,31,78,.15);
+}
+.prog-milestone.goal-marker span { font-size: 18px; }
+.prog-meta { text-align: center; font-size: 12px; font-weight: 600; color: var(--gray); margin-top: 8px; }
+.prog-meta strong { color: var(--navy); }
+
+/* milestones row */
+.milestones-row {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 10px;
+  margin-bottom: 32px;
+}
+@media (max-width: 700px) { .milestones-row { grid-template-columns: repeat(2,1fr); } }
+.milestone-badge {
+  background: var(--white);
+  border: 2px solid #e0e8f0;
+  border-radius: 16px;
+  padding: 14px 12px;
+  text-align: center;
+  transition: border-color .3s, box-shadow .3s, transform .3s;
+}
+.milestone-badge.reached {
+  border-color: var(--gold);
+  box-shadow: 0 0 20px rgba(245,162,0,.3);
+  transform: scale(1.04);
+  animation: msPop .5s ease;
+}
+@keyframes msPop { 0%{transform:scale(1)} 50%{transform:scale(1.1)} 100%{transform:scale(1.04)} }
+.ms-icon { font-size: 24px; display: block; margin-bottom: 4px; filter: grayscale(1); transition: filter .3s; }
+.milestone-badge.reached .ms-icon { filter: none; }
+.ms-label { font-size: 10px; font-weight: 800; color: var(--gray); text-transform: uppercase; letter-spacing: 1px; display: block; }
+.ms-amount { font-size: 14px; font-weight: 900; color: var(--navy); display: block; margin-top: 2px; }
+
+/* tracker grid */
+.tracker-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-items: start;
+}
+@media (max-width: 768px) { .tracker-grid { grid-template-columns: 1fr; } }
+
+/* pledge card */
+.pledge-card {
+  background: var(--white);
+  border-radius: 24px;
+  padding: 28px;
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(13,31,78,.08);
+}
+.pledge-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+.pledge-icon { font-size: 32px; }
+.pledge-header h3 { font-family: 'Bangers', cursive; font-size: 22px; color: var(--navy); letter-spacing: 1.5px; margin-bottom: 2px; }
+.pledge-header p { font-size: 12px; font-weight: 600; color: var(--gray); }
+.disclaimer-box {
+  background: #fff8e1;
+  border: 1px solid #f5a200;
+  border-left: 4px solid #f5a200;
+  border-radius: 12px;
+  padding: 14px 16px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #5a3e00;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+.form-group { margin-bottom: 14px; }
+.form-label { display: block; font-size: 12px; font-weight: 800; color: var(--navy); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 6px; }
+.req { color: #e53e3e; }
+.form-input {
+  width: 100%;
+  border: 2px solid #e0e8f0;
+  border-radius: 12px;
+  padding: 12px 14px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--navy);
+  outline: none;
+  transition: border-color .2s, box-shadow .2s;
+}
+.form-input:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(245,162,0,.15); }
+.amount-wrap { position: relative; }
+.amount-prefix {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-weight: 900;
+  font-size: 16px;
+  color: var(--gray);
+}
+.amount-input { padding-left: 28px; }
+.quick-amounts {
+  display: flex;
+  gap: 6px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+.qa-btn {
+  background: var(--soft);
+  border: 1px solid #d0daea;
+  border-radius: 20px;
+  padding: 4px 12px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--navy);
+  cursor: pointer;
+  transition: background .15s, border-color .15s, transform .15s;
+}
+.qa-btn:hover { background: var(--gold); border-color: var(--gold); color: var(--navy); transform: scale(1.05); }
+.binding-check {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 16px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  color: #334155;
+  line-height: 1.5;
+}
+.binding-check input { margin-top: 3px; width: 16px; height: 16px; accent-color: var(--gold); flex-shrink: 0; }
+.form-error { color: #e53e3e; font-size: 12px; font-weight: 700; margin-bottom: 12px; padding: 8px 12px; background: #fff5f5; border-radius: 8px; border: 1px solid #fed7d7; }
+.pledge-submit-btn {
+  width: 100%;
+  background: linear-gradient(135deg, var(--navy) 0%, #1a3a8a 100%);
+  color: var(--white);
+  border: none;
+  border-radius: 14px;
+  padding: 16px 24px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 15px;
+  font-weight: 900;
+  cursor: pointer;
+  transition: transform .2s, box-shadow .2s;
+  box-shadow: 0 4px 20px rgba(13,31,78,.3);
+}
+.pledge-submit-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(13,31,78,.4); }
+.pledge-note { font-size: 11px; font-weight: 600; color: var(--gray); text-align: center; margin-top: 10px; line-height: 1.5; }
+.pledge-success { text-align: center; padding: 20px; }
+.ps-icon { font-size: 48px; margin-bottom: 10px; }
+.ps-title { font-family: 'Bangers', cursive; font-size: 26px; color: var(--navy); letter-spacing: 1.5px; margin-bottom: 8px; }
+.ps-text { font-size: 13px; font-weight: 600; color: var(--gray); line-height: 1.6; margin-bottom: 16px; }
+.ps-reset { background: var(--soft); border: 1px solid #d0daea; border-radius: 20px; padding: 8px 20px; font-family: 'Nunito', sans-serif; font-size: 13px; font-weight: 800; color: var(--navy); cursor: pointer; }
+
+/* ledger */
+.ledger-card {
+  background: var(--white);
+  border-radius: 24px;
+  padding: 28px;
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(13,31,78,.08);
+}
+.ledger-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+.ledger-header h3 { font-family: 'Bangers', cursive; font-size: 22px; color: var(--navy); letter-spacing: 1.5px; }
+.ledger-live {
+  background: #e8f8ee;
+  color: #22863a;
+  font-size: 10px;
+  font-weight: 800;
+  padding: 3px 10px;
+  border-radius: 20px;
+  letter-spacing: 1px;
+}
+.ledger-subtitle { font-size: 11px; font-weight: 600; color: var(--gray); margin-bottom: 16px; }
+.ledger-entries { display: flex; flex-direction: column; gap: 8px; max-height: 420px; overflow-y: auto; }
+.ledger-loading { text-align: center; color: var(--gray); font-size: 13px; padding: 20px; }
+.ledger-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid transparent;
+  transition: background .2s;
+}
+.ledger-row:hover { background: var(--soft); }
+.ledger-row.confirmed { border-color: rgba(34,134,58,.15); background: rgba(34,134,58,.04); }
+.ledger-row.pledged { border-color: rgba(245,162,0,.2); background: rgba(245,162,0,.04); }
+.lr-avatar {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: var(--navy);
+  color: var(--white);
+  font-size: 16px;
+  font-weight: 900;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.ledger-row.confirmed .lr-avatar { background: linear-gradient(135deg, #22863a, #2da44e); }
+.ledger-row.pledged .lr-avatar { background: linear-gradient(135deg, var(--gold), #ff9900); color: var(--navy); }
+.lr-info { flex: 1; min-width: 0; }
+.lr-name { font-size: 14px; font-weight: 800; color: var(--navy); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.lr-msg { font-size: 11px; font-weight: 600; color: var(--gray); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.lr-right { text-align: right; flex-shrink: 0; }
+.lr-amount { font-size: 16px; font-weight: 900; color: var(--navy); }
+.ledger-row.confirmed .lr-amount { color: #22863a; }
+.lr-date { font-size: 10px; color: var(--gray); font-weight: 600; }
+.lr-status { font-size: 10px; font-weight: 800; margin-top: 2px; }
+.lr-status.confirmed { color: #22863a; }
+.lr-status.pledged { color: var(--gold); }
+.ledger-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 2px solid var(--soft);
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--navy);
+}
+.lt-amount { font-family: 'Bangers', cursive; font-size: 22px; color: var(--gold); letter-spacing: 1px; }
+.ledger-empty-cta {
+  text-align: center;
+  padding: 24px 16px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--navy);
+  line-height: 1.6;
+}
+.ledger-empty-cta p { font-size: 13px; color: var(--gray); margin-top: 6px; font-weight: 600; }
+
+/* confetti */
+.confetti-piece {
+  position: fixed;
+  pointer-events: none;
+  z-index: 99999;
+  border-radius: 3px;
+  animation: confettiDrop linear forwards;
+}
+@keyframes confettiDrop {
+  0%   { transform: translateY(-20px) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+}
+
+/* pulse on donate btn */
+.btn-gold { animation: btnPulse 3s infinite; }
+@keyframes btnPulse {
+  0%,100% { box-shadow: 0 0 0 0 rgba(245,162,0,.4); }
+  50%      { box-shadow: 0 0 0 10px rgba(245,162,0,0); }
+}
   </style>
 </head>
 <body>
@@ -1448,6 +1825,158 @@
 </section>
 
 <!-- ════════════════════════════════════
+     FUNDRAISING TRACKER
+════════════════════════════════════ -->
+<section id="tracker" style="background:linear-gradient(180deg,var(--soft) 0%,#e8f4ff 100%);padding:80px 32px;">
+  <div class="section-inner">
+    <div class="section-tag pink reveal">Live Fundraising Tracker</div>
+    <h2 class="reveal">Every Rand Gets Kira <span class="gold">Closer! 🎯</span></h2>
+    <p class="section-lead reveal">Watch the goal fill up in real time. Every donor is listed below — your name could be next! 💛</p>
+
+    <!-- Big progress hero -->
+    <div class="prog-hero reveal">
+      <div class="prog-numbers">
+        <div class="prog-raised">
+          <div class="prog-amount" id="raisedDisplay">R 0</div>
+          <div class="prog-sublabel">raised so far</div>
+        </div>
+        <div class="prog-pct-wrap">
+          <div class="prog-pct" id="pctDisplay">0%</div>
+          <div class="prog-sublabel">of goal</div>
+        </div>
+        <div class="prog-left">
+          <div class="prog-amount gold" id="leftDisplay">R 3,350</div>
+          <div class="prog-sublabel">still needed</div>
+        </div>
+      </div>
+
+      <!-- Progress bar -->
+      <div class="prog-bar-wrap">
+        <div class="prog-bar-track">
+          <div class="prog-bar-fill" id="progressFill" style="width:0%"></div>
+          <div class="prog-milestone" style="left:25%"><span>25%</span></div>
+          <div class="prog-milestone" style="left:50%"><span>50%</span></div>
+          <div class="prog-milestone" style="left:75%"><span>75%</span></div>
+          <div class="prog-milestone goal-marker" style="left:100%"><span>🏆</span></div>
+        </div>
+      </div>
+
+      <div class="prog-meta">
+        <span id="donorCount">0</span> supporters &nbsp;·&nbsp; Goal: <strong>R 3,350</strong> &nbsp;·&nbsp; <span id="lastUpdated">Updated today</span>
+      </div>
+    </div>
+
+    <!-- Milestone celebrations -->
+    <div class="milestones-row reveal">
+      <div class="milestone-badge" id="ms25">
+        <span class="ms-icon">⭐</span>
+        <span class="ms-label">25% milestone</span>
+        <span class="ms-amount">R 838</span>
+      </div>
+      <div class="milestone-badge" id="ms50">
+        <span class="ms-icon">🏑</span>
+        <span class="ms-label">Halfway there!</span>
+        <span class="ms-amount">R 1,675</span>
+      </div>
+      <div class="milestone-badge" id="ms75">
+        <span class="ms-icon">🔥</span>
+        <span class="ms-label">Almost there!</span>
+        <span class="ms-amount">R 2,513</span>
+      </div>
+      <div class="milestone-badge" id="ms100">
+        <span class="ms-icon">🏆</span>
+        <span class="ms-label">GOAL REACHED!</span>
+        <span class="ms-amount">R 3,350</span>
+      </div>
+    </div>
+
+    <!-- Pledge form + Ledger -->
+    <div class="tracker-grid reveal">
+
+      <!-- Pledge form -->
+      <div class="pledge-card">
+        <div class="pledge-header">
+          <span class="pledge-icon">🔒</span>
+          <div>
+            <h3>Make a Binding Pledge</h3>
+            <p>Your commitment is logged &amp; published</p>
+          </div>
+        </div>
+
+        <div class="disclaimer-box">
+          <strong>⚖️ Binding Commitment Notice</strong><br>
+          By submitting this pledge and confirming via WhatsApp, you are making a <strong>formal, binding commitment</strong> to donate the stated amount to Kira du Plessis' 2026 Hockey Tour Fund. Your pledge will be <strong>timestamped, publicly logged</strong> in the donor ledger below, and personally acknowledged by Zané Bezuidenhout. This is a promise — and promises matter.
+        </div>
+
+        <form id="pledgeForm" novalidate>
+          <div class="form-group">
+            <label class="form-label">Your Name <span class="req">*</span></label>
+            <input class="form-input" id="pName" type="text" placeholder="e.g. John Smith" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Pledge Amount (ZAR) <span class="req">*</span></label>
+            <div class="amount-wrap">
+              <span class="amount-prefix">R</span>
+              <input class="form-input amount-input" id="pAmount" type="number" min="10" placeholder="e.g. 200" required />
+            </div>
+            <div class="quick-amounts">
+              <button type="button" class="qa-btn" onclick="setAmount(50)">R50</button>
+              <button type="button" class="qa-btn" onclick="setAmount(100)">R100</button>
+              <button type="button" class="qa-btn" onclick="setAmount(250)">R250</button>
+              <button type="button" class="qa-btn" onclick="setAmount(500)">R500</button>
+              <button type="button" class="qa-btn" onclick="setAmount(1000)">R1000</button>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Message for Kira (optional)</label>
+            <input class="form-input" id="pMsg" type="text" placeholder="e.g. Go Kira! We believe in you! 🏑" />
+          </div>
+          <label class="binding-check">
+            <input type="checkbox" id="bindingCheck" required />
+            <span>I confirm this pledge is a <strong>binding commitment</strong> and I understand it will be publicly logged in the donor ledger.</span>
+          </label>
+          <div class="form-error" id="formError" style="display:none">Please fill in all required fields and tick the checkbox.</div>
+          <button type="submit" class="pledge-submit-btn" id="pledgeSubmit">
+            <span id="pledgeBtnText">🔒 Commit to Donate via WhatsApp</span>
+          </button>
+          <div class="pledge-note">You'll be redirected to WhatsApp to confirm — this creates a timestamped record of your commitment.</div>
+        </form>
+
+        <!-- Success state -->
+        <div class="pledge-success" id="pledgeSuccess" style="display:none">
+          <div class="ps-icon">🎉</div>
+          <div class="ps-title">Your Pledge is Locked In!</div>
+          <div class="ps-text">WhatsApp has opened with your commitment. Complete the send to officially log your pledge. Zané will add you to the ledger once confirmed. Thank you so much! ❤️</div>
+          <button class="ps-reset" onclick="resetPledge()">Make Another Pledge</button>
+        </div>
+      </div>
+
+      <!-- Ledger -->
+      <div class="ledger-card">
+        <div class="ledger-header">
+          <h3>📋 Donor Ledger</h3>
+          <span class="ledger-live">● LIVE</span>
+        </div>
+        <div class="ledger-subtitle">All donations · publicly logged · updated by Zané</div>
+        <div id="ledgerEntries" class="ledger-entries">
+          <div class="ledger-loading">Loading supporters...</div>
+        </div>
+        <div class="ledger-total" id="ledgerTotal" style="display:none">
+          <span>Total Confirmed</span>
+          <span id="ledgerTotalAmount" class="lt-amount">R 0</span>
+        </div>
+        <div class="ledger-empty-cta" id="ledgerEmptyCta" style="display:none">
+          <div style="font-size:32px">💛</div>
+          <strong>Be the very first supporter!</strong>
+          <p>Fill in the pledge form and your name will appear right here in the ledger.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
      DONATE
 ════════════════════════════════════ -->
 <section id="donate">
@@ -1640,91 +2169,254 @@
 </div>
 
 <script>
-  /* ── NAV scroll effect ── */
-  const nav = document.getElementById('mainNav');
-  window.addEventListener('scroll', () => {
-    nav.classList.toggle('scrolled', window.scrollY > 60);
+/* ── NAV scroll effect ── */
+const nav = document.getElementById('mainNav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+});
+
+/* ── Scroll reveal ── */
+const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+  });
+}, { threshold: 0.12 });
+revealEls.forEach(el => io.observe(el));
+
+/* ── Copy to clipboard ── */
+function copyText(text, btn) {
+  const fallback = () => {
+    const ta = document.createElement('textarea');
+    ta.value = text; document.body.appendChild(ta); ta.select();
+    document.execCommand('copy'); document.body.removeChild(ta);
+  };
+  (navigator.clipboard ? navigator.clipboard.writeText(text) : Promise.reject()).catch(fallback);
+  btn.textContent = '✓ Copied!'; btn.classList.add('copied');
+  setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+}
+
+/* ── Countdown ── */
+function updateCountdown() {
+  const tour = new Date('2026-06-19T08:00:00+02:00');
+  const now = new Date();
+  const diff = tour - now;
+  if (diff <= 0) {
+    const banner = document.getElementById('countdownBanner');
+    if (banner) banner.innerHTML = '<div class="cb-inner" style="justify-content:center"><span style="color:var(--gold);font-family:Bangers,cursive;font-size:20px;letter-spacing:2px">🏑 KIRA IS ON TOUR — GO KIRA GO!</span></div>';
+    return;
+  }
+  const d = Math.floor(diff / 86400000);
+  const h = Math.floor((diff % 86400000) / 3600000);
+  const m = Math.floor((diff % 3600000) / 60000);
+  const s = Math.floor((diff % 60000) / 1000);
+  const pad = n => String(n).padStart(2,'0');
+  document.getElementById('cd-days').textContent  = pad(d);
+  document.getElementById('cd-hours').textContent = pad(h);
+  document.getElementById('cd-mins').textContent  = pad(m);
+  document.getElementById('cd-secs').textContent  = pad(s);
+}
+setInterval(updateCountdown, 1000);
+updateCountdown();
+
+/* ── Lightbox ── */
+const galleryImages = [
+  'images/kira-sticks-pointing.jpg','images/team-hearts-indoor.jpg',
+  'images/kira-trophy-field.jpg','images/team-goalkeeper-full.jpg',
+  'images/team-trophy-field.jpg','images/team-all-awards.jpg',
+  'images/team-coaches-formal.jpg','images/team-lineup-gk.jpg',
+  'images/kira-sticks-lying.jpg','images/team-hands-bw.jpg',
+  'images/team-celebrate.jpg','images/kira-facepaint.jpg',
+];
+let lbIndex = 0;
+function openLightbox(src) {
+  lbIndex = galleryImages.indexOf(src);
+  if (lbIndex === -1) lbIndex = 0;
+  document.getElementById('lbImg').src = src;
+  updateCounter();
+  document.getElementById('lightbox').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox(e) {
+  if (!e || e.target === document.getElementById('lightbox') || e.target.classList.contains('lb-close')) {
+    document.getElementById('lightbox').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+}
+function lbNav(dir) {
+  lbIndex = (lbIndex + dir + galleryImages.length) % galleryImages.length;
+  document.getElementById('lbImg').src = galleryImages[lbIndex];
+  updateCounter();
+}
+function updateCounter() {
+  document.getElementById('lbCounter').textContent = (lbIndex+1) + ' / ' + galleryImages.length;
+}
+document.addEventListener('keydown', e => {
+  if (!document.getElementById('lightbox').classList.contains('active')) return;
+  if (e.key === 'ArrowLeft') lbNav(-1);
+  if (e.key === 'ArrowRight') lbNav(1);
+  if (e.key === 'Escape') closeLightbox({ target: document.getElementById('lightbox') });
+});
+
+/* ── Confetti ── */
+function launchConfetti() {
+  const colors = ['#f5a200','#ffc93c','#00b4d8','#ff6b9d','#ffffff','#0d1f4e'];
+  for (let i = 0; i < 80; i++) {
+    const el = document.createElement('div');
+    el.className = 'confetti-piece';
+    const size = 6 + Math.random() * 8;
+    el.style.cssText = [
+      'left:' + Math.random() * 100 + 'vw',
+      'top:-20px',
+      'width:' + size + 'px',
+      'height:' + size + 'px',
+      'background:' + colors[Math.floor(Math.random() * colors.length)],
+      'border-radius:' + (Math.random() > .5 ? '50%' : '2px'),
+      'animation-duration:' + (2 + Math.random() * 2) + 's',
+      'animation-delay:' + Math.random() * .8 + 's'
+    ].join(';');
+    document.body.appendChild(el);
+    setTimeout(() => el.remove(), 4000);
+  }
+}
+
+/* ── Donations ledger ── */
+async function loadDonations() {
+  try {
+    const res = await fetch('data/donations.json?t=' + Date.now());
+    const data = await res.json();
+    renderTracker(data);
+  } catch(e) {
+    renderTracker({ goal: 3350, currency: 'ZAR', last_updated: '', donations: [] });
+  }
+}
+
+function renderTracker(data) {
+  const confirmed = data.donations.filter(d => d.status === 'confirmed');
+  const total = confirmed.reduce((s, d) => s + d.amount, 0);
+  const goal = data.goal || 3350;
+  const pct = Math.min(100, Math.round((total / goal) * 100));
+  const left = Math.max(0, goal - total);
+
+  /* animate progress bar after short delay */
+  setTimeout(() => {
+    const fill = document.getElementById('progressFill');
+    if (fill) fill.style.width = pct + '%';
+  }, 300);
+
+  /* numbers */
+  animateCount('raisedDisplay', 0, total, 'R ', '');
+  animateCount('leftDisplay', 0, left, 'R ', '');
+  document.getElementById('pctDisplay').textContent  = pct + '%';
+  document.getElementById('donorCount').textContent  = confirmed.length;
+  if (data.last_updated) document.getElementById('lastUpdated').textContent = 'Updated ' + data.last_updated;
+
+  /* milestones */
+  const milestones = [{id:'ms25',pct:25},{id:'ms50',pct:50},{id:'ms75',pct:75},{id:'ms100',pct:100}];
+  milestones.forEach(ms => {
+    if (pct >= ms.pct) document.getElementById(ms.id)?.classList.add('reached');
   });
 
-  /* ── Scroll reveal ── */
-  const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
-    });
-  }, { threshold: 0.12 });
-  revealEls.forEach(el => io.observe(el));
+  /* ledger */
+  const entries = document.getElementById('ledgerEntries');
+  const totalEl = document.getElementById('ledgerTotal');
+  const emptyCta = document.getElementById('ledgerEmptyCta');
+  const totalAmountEl = document.getElementById('ledgerTotalAmount');
 
-  /* ── Copy to clipboard ── */
-  function copyText(text, btn) {
-    navigator.clipboard.writeText(text).then(() => {
-      btn.textContent = '✓ Copied!';
-      btn.classList.add('copied');
-      setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
-    }).catch(() => {
-      const ta = document.createElement('textarea');
-      ta.value = text;
-      document.body.appendChild(ta);
-      ta.select();
-      document.execCommand('copy');
-      document.body.removeChild(ta);
-      btn.textContent = '✓ Copied!';
-      btn.classList.add('copied');
-      setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
-    });
+  if (!data.donations.length) {
+    entries.innerHTML = '';
+    emptyCta.style.display = 'block';
+    totalEl.style.display = 'none';
+  } else {
+    emptyCta.style.display = 'none';
+    totalEl.style.display = 'flex';
+    totalAmountEl.textContent = 'R ' + total.toLocaleString('en-ZA');
+
+    const sorted = [...data.donations].sort((a,b) => new Date(b.date) - new Date(a.date));
+    entries.innerHTML = sorted.map(d => `
+      <div class="ledger-row ${d.status}">
+        <div class="lr-avatar">${(d.name||'?')[0].toUpperCase()}</div>
+        <div class="lr-info">
+          <div class="lr-name">${escHtml(d.name)}</div>
+          ${d.message ? '<div class="lr-msg">"' + escHtml(d.message) + '"</div>' : ''}
+        </div>
+        <div class="lr-right">
+          <div class="lr-amount">R ${Number(d.amount).toLocaleString('en-ZA')}</div>
+          <div class="lr-date">${d.date || ''}</div>
+          <div class="lr-status ${d.status}">${d.status === 'confirmed' ? '✅ Confirmed' : '⏳ Pledged'}</div>
+        </div>
+      </div>`).join('');
+  }
+}
+
+function animateCount(id, from, to, prefix, suffix) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  const duration = 1200;
+  const start = performance.now();
+  function update(now) {
+    const t = Math.min(1, (now - start) / duration);
+    const val = Math.round(from + (to - from) * easeOut(t));
+    el.textContent = prefix + val.toLocaleString('en-ZA') + suffix;
+    if (t < 1) requestAnimationFrame(update);
+  }
+  requestAnimationFrame(update);
+}
+function easeOut(t) { return 1 - Math.pow(1-t, 3); }
+function escHtml(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+/* quick amount buttons */
+function setAmount(v) {
+  const inp = document.getElementById('pAmount');
+  if (inp) { inp.value = v; inp.dispatchEvent(new Event('input')); }
+}
+
+/* pledge form */
+document.getElementById('pledgeForm')?.addEventListener('submit', function(e) {
+  e.preventDefault();
+  const name   = document.getElementById('pName').value.trim();
+  const amount = parseFloat(document.getElementById('pAmount').value);
+  const msg    = document.getElementById('pMsg').value.trim();
+  const agreed = document.getElementById('bindingCheck').checked;
+
+  document.getElementById('formError').style.display = 'none';
+  if (!name || !amount || amount < 10 || !agreed) {
+    document.getElementById('formError').style.display = 'block';
+    return;
   }
 
-  /* ── Lightbox ── */
-  const galleryImages = [
-    'images/kira-sticks-pointing.jpg',
-    'images/team-hearts-indoor.jpg',
-    'images/kira-trophy-field.jpg',
-    'images/team-goalkeeper-full.jpg',
-    'images/team-trophy-field.jpg',
-    'images/team-all-awards.jpg',
-    'images/team-coaches-formal.jpg',
-    'images/team-lineup-gk.jpg',
-    'images/kira-sticks-lying.jpg',
-    'images/team-hands-bw.jpg',
-    'images/team-celebrate.jpg',
-    'images/kira-facepaint.jpg',
-  ];
-  let lbIndex = 0;
+  const now  = new Date();
+  const date = now.toLocaleDateString('en-ZA',{day:'2-digit',month:'short',year:'numeric'});
+  const time = now.toLocaleTimeString('en-ZA',{hour:'2-digit',minute:'2-digit'});
 
-  function openLightbox(src) {
-    const lb = document.getElementById('lightbox');
-    const img = document.getElementById('lbImg');
-    lbIndex = galleryImages.indexOf(src);
-    if (lbIndex === -1) lbIndex = 0;
-    img.src = src;
-    updateCounter();
-    lb.classList.add('active');
-    document.body.style.overflow = 'hidden';
-  }
+  const waMsg = encodeURIComponent(
+    '🏑 BINDING PLEDGE — Kira\'s Hockey Tour 2026\n\n' +
+    'I, ' + name + ', hereby make a BINDING pledge to donate R' + amount.toLocaleString('en-ZA') +
+    ' towards Kira du Plessis\' 2026 Hockey Tour to Jubaweni.\n\n' +
+    (msg ? '💬 My message: "' + msg + '"\n' : '') +
+    '📅 Pledged: ' + date + ' at ' + time + '\n' +
+    '🔗 Reference: KiraHockey\n\n' +
+    'I acknowledge this commitment is BINDING and will be publicly logged in the donor ledger.\n\n' +
+    '💛 #KiraHockeyDream — https://911duplessis.github.io/Kira-Lee/'
+  );
 
-  function closeLightbox(e) {
-    if (!e || e.target === document.getElementById('lightbox') || e.target.classList.contains('lb-close')) {
-      document.getElementById('lightbox').classList.remove('active');
-      document.body.style.overflow = '';
-    }
-  }
+  window.open('https://wa.me/27676166220?text=' + waMsg, '_blank');
+  launchConfetti();
 
-  function lbNav(dir) {
-    lbIndex = (lbIndex + dir + galleryImages.length) % galleryImages.length;
-    document.getElementById('lbImg').src = galleryImages[lbIndex];
-    updateCounter();
-  }
+  /* show success */
+  document.getElementById('pledgeForm').style.display = 'none';
+  document.getElementById('pledgeSuccess').style.display = 'block';
+});
 
-  function updateCounter() {
-    document.getElementById('lbCounter').textContent = (lbIndex + 1) + ' / ' + galleryImages.length;
-  }
+function resetPledge() {
+  document.getElementById('pledgeForm').reset();
+  document.getElementById('pledgeForm').style.display = 'block';
+  document.getElementById('pledgeSuccess').style.display = 'none';
+  document.getElementById('formError').style.display = 'none';
+}
 
-  document.addEventListener('keydown', e => {
-    if (!document.getElementById('lightbox').classList.contains('active')) return;
-    if (e.key === 'ArrowLeft') lbNav(-1);
-    if (e.key === 'ArrowRight') lbNav(1);
-    if (e.key === 'Escape') closeLightbox({ target: document.getElementById('lightbox') });
-  });
+/* init */
+loadDonations();
 </script>
 </body>
 </html>
