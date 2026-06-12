@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Help Kira Reach Her Hockey Dream! ❤️</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Bangers&display=swap');
+
+    :root {
+      --navy:  #0d1f4e;
+      --navy2: #162560;
+      --gold:  #f5a200;
+      --gold2: #ffc93c;
+      --teal:  #00b4d8;
+      --white: #ffffff;
+      --cream: #fffdf5;
+      --soft:  #f0f6ff;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: #e8edf5;
+      display: flex;
+      justify-content: center;
+      padding: 24px 16px 48px;
+    }
+
+    /* ── A4 container ── */
+    .flyer {
+      width: 794px;
+      background: var(--cream);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+      position: relative;
+    }
+
+    /* ──────────────────────────────────────────
+       TOP BANNER
+    ────────────────────────────────────────── */
+    .top-banner {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 60%, #1a3580 100%);
+      position: relative;
+      overflow: hidden;
+      padding: 0;
+    }
+
+    .top-banner::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 10% 50%, rgba(245,162,0,0.18) 0%, transparent 50%),
+        radial-gradient(circle at 90% 20%, rgba(0,180,216,0.12) 0%, transparent 50%);
+    }
+
+    .brush-stripe {
+      position: absolute;
+      bottom: -2px;
+      left: 0; right: 0;
+      height: 48px;
+      background: var(--cream);
+      clip-path: ellipse(55% 100% at 50% 100%);
+    }
+
+    /* school logo */
+    .school-badge {
+      position: absolute;
+      top: 18px; right: 24px;
+      background: rgba(255,255,255,0.12);
+      border: 2px solid rgba(245,162,0,0.5);
+      border-radius: 16px;
+      padding: 8px 14px;
+      text-align: center;
+      z-index: 5;
+    }
+    .school-badge .school-name {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 900;
+      font-size: 11px;
+      color: var(--gold);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      line-height: 1.3;
+    }
+    .school-badge .school-tagline {
+      font-size: 9px;
+      color: rgba(255,255,255,0.75);
+      font-style: italic;
+    }
+    .school-badge .bee-icon { font-size: 20px; }
+
+    .banner-content {
+      display: flex;
+      align-items: flex-end;
+      gap: 0;
+      padding: 36px 24px 56px 32px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .banner-text { flex: 1; }
+
+    .tagline-top {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .main-headline {
+      font-family: 'Bangers', cursive;
+      font-size: 64px;
+      line-height: 0.95;
+      color: var(--white);
+      text-shadow: 4px 4px 0 rgba(0,0,0,0.3), 0 0 40px rgba(245,162,0,0.4);
+      letter-spacing: 2px;
+    }
+    .main-headline span { color: var(--gold); }
+
+    .sub-headline {
+      margin-top: 10px;
+      font-size: 15px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.88);
+      line-height: 1.4;
+    }
+
+    .hearts-row {
+      margin-top: 10px;
+      font-size: 22px;
+      letter-spacing: 4px;
+    }
+
+    /* hero photo */
+    .hero-photo-wrap {
+      width: 220px;
+      flex-shrink: 0;
+      position: relative;
+      margin-bottom: -24px;
+    }
+    .hero-photo-wrap::before {
+      content: '';
+      position: absolute;
+      bottom: 20px; left: 50%;
+      transform: translateX(-50%);
+      width: 160px; height: 160px;
+      background: radial-gradient(circle, rgba(245,162,0,0.35) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .hero-photo {
+      width: 100%;
+      border-radius: 18px 18px 0 0;
+      display: block;
+      position: relative;
+      z-index: 2;
+      filter: drop-shadow(0 8px 24px rgba(0,0,0,0.5));
+    }
+
+    .star-badge {
+      position: absolute;
+      top: 12px;
+      left: -12px;
+      background: var(--gold);
+      color: var(--navy);
+      font-weight: 900;
+      font-size: 11px;
+      padding: 6px 12px;
+      border-radius: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      z-index: 10;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .star-badge::after {
+      content: ' ⭐';
+    }
+
+    /* ──────────────────────────────────────────
+       SELECTED BOX
+    ────────────────────────────────────────── */
+    .selected-section {
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold2) 100%);
+      padding: 18px 32px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .selected-left {
+      flex: 1;
+    }
+    .selected-title {
+      font-family: 'Bangers', cursive;
+      font-size: 30px;
+      color: var(--navy);
+      letter-spacing: 2px;
+      line-height: 1;
+    }
+    .selected-subtitle {
+      font-size: 12px;
+      font-weight: 800;
+      color: rgba(13,31,78,0.75);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+    .tour-details {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 10px;
+    }
+    .detail-box {
+      background: rgba(13,31,78,0.12);
+      border-radius: 12px;
+      padding: 10px 14px;
+      text-align: center;
+    }
+    .detail-icon { font-size: 18px; }
+    .detail-label {
+      font-size: 9px;
+      font-weight: 800;
+      color: var(--navy);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      opacity: 0.7;
+    }
+    .detail-value {
+      font-size: 13px;
+      font-weight: 900;
+      color: var(--navy);
+      line-height: 1.2;
+    }
+
+    /* ──────────────────────────────────────────
+       BODY CONTENT
+    ────────────────────────────────────────── */
+    .body-content {
+      padding: 28px 32px 24px;
+    }
+
+    /* Story section */
+    .story-box {
+      background: linear-gradient(135deg, var(--soft) 0%, #e8f4ff 100%);
+      border-left: 5px solid var(--teal);
+      border-radius: 0 16px 16px 0;
+      padding: 18px 22px;
+      margin-bottom: 22px;
+      position: relative;
+    }
+    .story-box::before {
+      content: '💬';
+      position: absolute;
+      top: -12px; left: 16px;
+      font-size: 24px;
+    }
+    .story-text {
+      font-size: 14px;
+      font-weight: 600;
+      color: #2d3a5a;
+      line-height: 1.7;
+    }
+    .story-sig {
+      margin-top: 10px;
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--navy);
+    }
+
+    /* Photo strip */
+    .photo-strip {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 22px;
+    }
+    .photo-strip img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+      transition: transform .2s;
+    }
+    .photo-strip img:hover { transform: scale(1.03); }
+    .photo-caption {
+      text-align: center;
+      font-size: 9px;
+      font-weight: 700;
+      color: var(--navy);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-top: 5px;
+      opacity: 0.7;
+    }
+
+    /* Two-column row */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 22px;
+    }
+
+    /* WHY YOUR SUPPORT MATTERS */
+    .support-box {
+      background: var(--navy);
+      color: var(--white);
+      border-radius: 16px;
+      padding: 18px 20px;
+      position: relative;
+      overflow: hidden;
+    }
+    .support-box::before {
+      content: '';
+      position: absolute;
+      top: -20px; right: -20px;
+      width: 100px; height: 100px;
+      background: rgba(245,162,0,0.15);
+      border-radius: 50%;
+    }
+    .support-box h3 {
+      font-family: 'Bangers', cursive;
+      font-size: 20px;
+      color: var(--gold);
+      letter-spacing: 1.5px;
+      margin-bottom: 10px;
+    }
+    .support-point {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      margin-bottom: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      line-height: 1.5;
+      color: rgba(255,255,255,0.9);
+    }
+    .support-point .icon { font-size: 14px; flex-shrink: 0; margin-top: 1px; }
+    .support-quote {
+      margin-top: 12px;
+      background: rgba(245,162,0,0.15);
+      border-radius: 10px;
+      padding: 10px 12px;
+      font-size: 11px;
+      font-style: italic;
+      color: rgba(255,255,255,0.85);
+      line-height: 1.5;
+    }
+    .support-silhouette {
+      width: 100%;
+      text-align: center;
+      margin-top: 14px;
+    }
+    .silhouette-svg { width: 64px; opacity: 0.4; fill: var(--gold); }
+
+    /* HOW YOU CAN HELP */
+    .help-box {
+      background: linear-gradient(135deg, var(--teal) 0%, #0096b7 100%);
+      color: var(--white);
+      border-radius: 16px;
+      padding: 18px 20px;
+    }
+    .help-box h3 {
+      font-family: 'Bangers', cursive;
+      font-size: 20px;
+      letter-spacing: 1.5px;
+      margin-bottom: 12px;
+    }
+    .help-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 10px;
+      padding: 10px 12px;
+      margin-bottom: 8px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .help-item .hi { font-size: 20px; flex-shrink: 0; }
+    .help-item small {
+      display: block;
+      font-size: 10px;
+      font-weight: 500;
+      opacity: 0.85;
+      margin-top: 2px;
+    }
+
+    /* ──────────────────────────────────────────
+       BANKING DETAILS
+    ────────────────────────────────────────── */
+    .banking-section {
+      background: linear-gradient(135deg, var(--navy) 0%, #1a3580 100%);
+      margin: 0 32px 24px;
+      border-radius: 20px;
+      padding: 22px 26px;
+      position: relative;
+      overflow: hidden;
+    }
+    .banking-section::before {
+      content: '';
+      position: absolute;
+      top: -30px; right: -30px;
+      width: 150px; height: 150px;
+      background: rgba(245,162,0,0.08);
+      border-radius: 50%;
+    }
+    .banking-section::after {
+      content: '🏦';
+      position: absolute;
+      top: 18px; right: 24px;
+      font-size: 32px;
+      opacity: 0.5;
+    }
+    .banking-title {
+      font-family: 'Bangers', cursive;
+      font-size: 22px;
+      color: var(--gold);
+      letter-spacing: 2px;
+      margin-bottom: 14px;
+      position: relative;
+    }
+    .banking-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px 20px;
+    }
+    .bk-row {
+      display: flex;
+      flex-direction: column;
+    }
+    .bk-label {
+      font-size: 9px;
+      font-weight: 800;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      opacity: 0.8;
+    }
+    .bk-value {
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: 0.5px;
+    }
+    .bk-value.big {
+      font-size: 18px;
+      color: var(--gold2);
+      letter-spacing: 2px;
+    }
+    .bk-divider {
+      grid-column: 1 / -1;
+      height: 1px;
+      background: rgba(255,255,255,0.1);
+      margin: 4px 0;
+    }
+
+    /* ──────────────────────────────────────────
+       CONTACT & CLOSING
+    ────────────────────────────────────────── */
+    .contact-closing {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 0 32px 24px;
+    }
+
+    .contact-box {
+      background: var(--gold);
+      border-radius: 16px;
+      padding: 16px 20px;
+      position: relative;
+    }
+    .contact-box h4 {
+      font-family: 'Bangers', cursive;
+      font-size: 18px;
+      color: var(--navy);
+      letter-spacing: 1.5px;
+      margin-bottom: 8px;
+    }
+    .contact-line {
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--navy);
+      line-height: 1.6;
+    }
+    .contact-line a {
+      color: var(--navy);
+      text-decoration: none;
+    }
+    .phone-big {
+      font-size: 20px;
+      font-weight: 900;
+      color: var(--navy);
+      letter-spacing: 1px;
+    }
+
+    .closing-box {
+      background: linear-gradient(135deg, #ffe8f0 0%, #ffd6e8 100%);
+      border-radius: 16px;
+      padding: 16px 20px;
+      border: 2px solid #ffaacf;
+    }
+    .closing-text {
+      font-size: 12px;
+      font-weight: 700;
+      color: #7a1440;
+      line-height: 1.6;
+      font-style: italic;
+    }
+    .closing-motto {
+      margin-top: 8px;
+      font-size: 11px;
+      font-weight: 900;
+      color: var(--navy);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+    .closing-sig {
+      margin-top: 8px;
+      font-size: 14px;
+      font-weight: 900;
+      color: #c0175e;
+    }
+    .big-hearts { font-size: 18px; letter-spacing: 3px; }
+
+    /* ──────────────────────────────────────────
+       FOOTER
+    ────────────────────────────────────────── */
+    .footer {
+      background: var(--navy);
+      padding: 14px 32px;
+      text-align: center;
+    }
+    .footer-text {
+      color: rgba(255,255,255,0.6);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    .footer-text span { color: var(--gold); }
+
+    /* ──────────────────────────────────────────
+       DECORATIVE FLOATERS
+    ────────────────────────────────────────── */
+    .floater {
+      position: absolute;
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.12;
+    }
+
+    /* section divider */
+    .divider {
+      text-align: center;
+      margin: 4px 0 20px;
+      font-size: 18px;
+      letter-spacing: 6px;
+      opacity: 0.6;
+    }
+
+    @media print {
+      body { background: white; padding: 0; }
+      .flyer { box-shadow: none; border-radius: 0; }
+    }
+  </style>
+</head>
+<body>
+<div class="flyer">
+
+  <!-- ═══════════════════════════════════════
+       TOP BANNER
+  ═══════════════════════════════════════ -->
+  <div class="top-banner">
+
+    <!-- School badge -->
+    <div class="school-badge">
+      <div class="bee-icon">🐝</div>
+      <div class="school-name">Laerskool<br>Midvaal</div>
+      <div class="school-tagline">"Net die beste vir u kind"</div>
+    </div>
+
+    <div class="banner-content">
+      <div class="banner-text">
+        <div class="tagline-top">🏑 2026 Hockey Tour ⭐</div>
+        <div class="main-headline">
+          HELP ME<br>
+          REACH MY<br>
+          <span>HOCKEY</span><br>
+          DREAM!
+        </div>
+        <div class="sub-headline">
+          Support <strong>Kira du Plessis</strong> on her<br>
+          2026 Hockey Tour to <strong>Jubaweni</strong>
+        </div>
+        <div class="hearts-row">❤️ 🏑 ⭐ 🏆 ❤️</div>
+      </div>
+
+      <div class="hero-photo-wrap">
+        <div class="star-badge">Captain #7</div>
+        <img class="hero-photo" src="images/kira-hero.jpg" alt="Kira du Plessis with hockey sticks" />
+      </div>
+    </div>
+
+    <div class="brush-stripe"></div>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       PROUDLY SELECTED STRIP
+  ═══════════════════════════════════════ -->
+  <div class="selected-section">
+    <div class="selected-left">
+      <div class="selected-title">🌟 Proudly Selected!</div>
+      <div class="selected-subtitle">A-Team Captain · Laerskool Midvaal</div>
+    </div>
+    <div class="tour-details">
+      <div class="detail-box">
+        <div class="detail-icon">📅</div>
+        <div class="detail-label">Tour Dates</div>
+        <div class="detail-value">19 – 21<br>June 2026</div>
+      </div>
+      <div class="detail-box">
+        <div class="detail-icon">📍</div>
+        <div class="detail-label">Destination</div>
+        <div class="detail-value">Jubaweni</div>
+      </div>
+      <div class="detail-box">
+        <div class="detail-icon">💰</div>
+        <div class="detail-label">Tour Cost</div>
+        <div class="detail-value">R 3 350<br>per player</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       BODY CONTENT
+  ═══════════════════════════════════════ -->
+  <div class="body-content">
+
+    <!-- Story -->
+    <div class="story-box">
+      <p class="story-text">
+        Hi everyone! My name is <strong>Kira</strong> and I have been chosen to represent
+        <strong>Laerskool Midvaal</strong> as <strong>captain of the A-team</strong> on our
+        hockey tour! This is a huge honour and I am so excited. I have worked really hard for
+        this — practising every day, giving my absolute best on every field. Every single
+        donation, no matter how small, helps me join my teammates, make amazing memories, and
+        chase my hockey dreams! Thank you for believing in me. 🏑💛
+      </p>
+      <div class="story-sig">— Kira du Plessis &nbsp;❤️&nbsp; #7 &nbsp;⭐</div>
+    </div>
+
+    <!-- Photo strip -->
+    <div class="photo-strip">
+      <div>
+        <img src="images/kira-trophy.jpg" alt="Kira with trophy" />
+        <div class="photo-caption">Sedibeng-Oos A-Kring Champions 🏆</div>
+      </div>
+      <div>
+        <img src="images/team-win.jpg" alt="Team celebrating win" />
+        <div class="photo-caption">Champions with hearts 💛💙</div>
+      </div>
+      <div>
+        <img src="images/team-trophies.jpg" alt="Team with trophies" />
+        <div class="photo-caption">Every player a winner! ⭐</div>
+      </div>
+    </div>
+
+    <div class="divider">⭐ 🏑 ❤️ 🏑 ⭐</div>
+
+    <!-- Two column: WHY & HOW -->
+    <div class="two-col">
+
+      <div class="support-box">
+        <h3>❤️ WHY YOUR SUPPORT MATTERS</h3>
+        <div class="support-point">
+          <span class="icon">🏑</span>
+          <span>Your donation helps a talented young girl represent her school with pride on the hockey field</span>
+        </div>
+        <div class="support-point">
+          <span class="icon">🤝</span>
+          <span>You become part of building lifelong memories, friendships, and character — on and off the field</span>
+        </div>
+        <div class="support-point">
+          <span class="icon">🌟</span>
+          <span>Kira was selected as <strong style="color:var(--gold)">captain</strong> — your support fuels a future leader</span>
+        </div>
+        <div class="support-point">
+          <span class="icon">💪</span>
+          <span>Together, our community makes big dreams possible for our children</span>
+        </div>
+        <div class="support-quote">
+          "Success is not just about winning — it's about having the courage to chase your dreams." 💛
+        </div>
+        <!-- Stick figure silhouette via SVG -->
+        <div class="support-silhouette">
+          <svg class="silhouette-svg" viewBox="0 0 100 140" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="50" cy="18" r="14"/>
+            <line x1="50" y1="32" x2="50" y2="85" stroke-width="8" stroke-linecap="round"/>
+            <line x1="50" y1="50" x2="18" y2="72" stroke-width="7" stroke-linecap="round"/>
+            <line x1="50" y1="50" x2="82" y2="65" stroke-width="7" stroke-linecap="round"/>
+            <line x1="50" y1="85" x2="28" y2="120" stroke-width="7" stroke-linecap="round"/>
+            <line x1="50" y1="85" x2="72" y2="120" stroke-width="7" stroke-linecap="round"/>
+            <line x1="82" y1="65" x2="96" y2="85" stroke-width="6" stroke-linecap="round"/>
+            <ellipse cx="100" cy="88" rx="8" ry="5" transform="rotate(-20 100 88)"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="help-box">
+        <h3>🙌 HOW YOU CAN HELP</h3>
+        <div class="help-item">
+          <span class="hi">💳</span>
+          <div>
+            <strong>Make a Donation</strong>
+            <small>Any amount helps! R50, R100, R500 — every rand counts towards Kira's tour</small>
+          </div>
+        </div>
+        <div class="help-item">
+          <span class="hi">📱</span>
+          <div>
+            <strong>Share This Flyer</strong>
+            <small>Send to your family, friends, WhatsApp groups &amp; social media</small>
+          </div>
+        </div>
+        <div class="help-item">
+          <span class="hi">🤲</span>
+          <div>
+            <strong>Sponsor Part of the Tour</strong>
+            <small>Help cover transport, accommodation, or meals for the team</small>
+          </div>
+        </div>
+        <div class="help-item">
+          <span class="hi">📣</span>
+          <div>
+            <strong>Spread the Word</strong>
+            <small>Tell local businesses, sports clubs, and community groups who may want to help</small>
+          </div>
+        </div>
+        <div class="help-item">
+          <span class="hi">🙏</span>
+          <div>
+            <strong>Prayer &amp; Encouragement</strong>
+            <small>Your kind words and good wishes mean the world to Kira!</small>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Full-width celebration photo -->
+    <div style="margin-bottom:22px; border-radius:16px; overflow:hidden; box-shadow:0 4px 20px rgba(0,0,0,0.15); position:relative;">
+      <img src="images/team-celebrate.jpg" alt="Team celebrating with confetti" style="width:100%; height:180px; object-fit:cover; object-position:center 30%; display:block;" />
+      <div style="position:absolute; bottom:0; left:0; right:0; background:linear-gradient(transparent, rgba(13,31,78,0.85)); padding:14px 20px;">
+        <span style="color:var(--gold); font-family:'Bangers',cursive; font-size:18px; letter-spacing:2px;">🎊 SEDIBENG-OOS U11 A-KRING CHAMPIONS! 🎊</span>
+      </div>
+    </div>
+
+  </div><!-- /body-content -->
+
+  <!-- ═══════════════════════════════════════
+       BANKING DETAILS
+  ═══════════════════════════════════════ -->
+  <div class="banking-section">
+    <div class="banking-title">💳 BANKING DETAILS &nbsp;—&nbsp; BESONDERHEDE</div>
+    <div class="banking-grid">
+      <div class="bk-row">
+        <span class="bk-label">Bank</span>
+        <span class="bk-value">FNB / RMB</span>
+      </div>
+      <div class="bk-row">
+        <span class="bk-label">Account Holder</span>
+        <span class="bk-value">Zane Bezuidenhout</span>
+      </div>
+      <div class="bk-divider"></div>
+      <div class="bk-row">
+        <span class="bk-label">Account Type</span>
+        <span class="bk-value">FNB Fusion Aspire Account</span>
+      </div>
+      <div class="bk-row">
+        <span class="bk-label">Branch Code</span>
+        <span class="bk-value">250655</span>
+      </div>
+      <div class="bk-divider"></div>
+      <div class="bk-row" style="grid-column: 1 / -1;">
+        <span class="bk-label">Account Number</span>
+        <span class="bk-value big">62759813990</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       CONTACT & CLOSING
+  ═══════════════════════════════════════ -->
+  <div class="contact-closing">
+
+    <div class="contact-box">
+      <h4>📞 CONTACT US</h4>
+      <div class="contact-line">Zané Bezuidenhout<br>(Kira's Mom 💛)</div>
+      <div class="phone-big">067 616 6220</div>
+      <div class="contact-line" style="margin-top:6px; font-size:11px; opacity:0.75;">
+        WhatsApp or Call — anytime!
+      </div>
+    </div>
+
+    <div class="closing-box">
+      <div class="closing-text">
+        "Thank you from the bottom of my heart! Every little bit brings me one step
+        closer to the field and to living my dream. Your kindness means everything to me."
+      </div>
+      <div class="closing-motto">Dream Big. Work Hard. Stay Humble.</div>
+      <div class="big-hearts">❤️ 🏑 ⭐ 🏆</div>
+      <div class="closing-sig">— Kira du Plessis</div>
+    </div>
+
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════ -->
+  <div class="footer">
+    <div class="footer-text">
+      <span>Every donation</span> brings Kira one step closer to the field &nbsp;·&nbsp;
+      Laerskool Midvaal Hokkietoer 2026 &nbsp;·&nbsp;
+      <span>#KiraHockeyDream</span>
+    </div>
+  </div>
+
+</div><!-- /flyer -->
+</body>
+</html>
