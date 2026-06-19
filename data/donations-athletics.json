@@ -1,0 +1,7 @@
+{
+  "_instructions": "Add each donation here. Zané updates this file via GitHub whenever a payment is received (FNB eWallet to 067 616 6220) or a WhatsApp pledge is confirmed. Status: 'confirmed' = money received, 'pledged' = committed via WhatsApp.",
+  "goal": 10000,
+  "currency": "ZAR",
+  "last_updated": "2026-06-19",
+  "donations": []
+}
