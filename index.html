@@ -130,6 +130,19 @@
     .ms-label{font-size:9px;font-weight:800;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:1px;display:block;}
     .ms-amount{font-size:12px;font-weight:900;color:var(--white);display:block;margin-top:2px;}
     .milestone-badge.reached .ms-label{color:var(--gold);}
+    .goal-box.goal-reached{border-color:var(--gold);box-shadow:0 0 40px rgba(245,162,0,.45),0 0 80px rgba(233,30,140,.2);animation:goalGlow 2.5s ease-in-out infinite;}
+    @keyframes goalGlow{0%,100%{box-shadow:0 0 40px rgba(245,162,0,.45),0 0 80px rgba(233,30,140,.2);}50%{box-shadow:0 0 60px rgba(245,162,0,.7),0 0 100px rgba(233,30,140,.35);}}
+
+    /* celebration banner */
+    .celebration-banner{max-height:0;overflow:hidden;opacity:0;transition:max-height .8s ease,opacity .6s ease,padding .8s ease;border-radius:20px;}
+    .celebration-banner.show{max-height:400px;opacity:1;margin:0 0 28px;padding:24px 28px;background:linear-gradient(135deg,#f5a200 0%,#e91e8c 100%);box-shadow:0 12px 50px rgba(233,30,140,.4);animation:celebPop .6s ease;}
+    @keyframes celebPop{0%{transform:scale(.92);}60%{transform:scale(1.02);}100%{transform:scale(1);}}
+    .cb-content{max-width:900px;margin:0 auto;text-align:center;}
+    .cb-emoji{font-size:32px;margin-bottom:8px;}
+    .cb-title{font-family:'Bangers',cursive;font-size:clamp(22px,4vw,34px);color:#fff;letter-spacing:1px;text-shadow:0 2px 8px rgba(0,0,0,.3);margin-bottom:10px;}
+    .cb-sub{font-size:14px;font-weight:700;color:rgba(255,255,255,.95);line-height:1.6;}
+    .cb-sub strong{color:#0d1f4e;}
+    @media (max-width:600px){.celebration-banner.show{padding:18px 16px;}}
 
     /* covers */
     .covers-grid { display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:12px; }
@@ -452,6 +465,13 @@
 
 <!-- GOAL HERO -->
 <section id="goal-hero">
+  <div class="celebration-banner" id="celebrationBanner">
+    <div class="cb-content">
+      <div class="cb-emoji">🎉🏑💛</div>
+      <div class="cb-title">DREAM ACHIEVED — KIRA'S TOUR IS FULLY FUNDED!</div>
+      <div class="cb-sub">Thank you to every supporter — and a heartfelt thank you to her amazing mom, <strong>Zané Bezuidenhout</strong>, whose pledge ("My Alles 💛") sealed the goal. Kira is going to Jubaweni! 🏑✨</div>
+    </div>
+  </div>
   <div class="gh-inner">
     <!-- LEFT -->
     <div class="gh-text-col">
@@ -466,7 +486,7 @@
 
       <!-- GOAL BOX -->
       <div class="goal-box reveal" id="tracker">
-        <div class="goal-title">Our Goal</div>
+        <div class="goal-title" id="goalTitleText">Our Goal</div>
         <div class="goal-amount">R 3,350</div>
         <div class="prog-bar-track">
           <div class="prog-bar-fill" id="progressFill" style="width:0%"></div>
@@ -769,7 +789,7 @@
       <div class="ledger-subtitle">All donations · publicly logged · updated by Zané</div>
       <div class="ledger-entries" id="ledgerEntries"><div style="text-align:center;color:rgba(255,255,255,.4);font-size:13px;padding:20px;">Loading supporters...</div></div>
       <div class="ledger-total" id="ledgerTotal" style="display:none;">
-        <span>Total Confirmed</span>
+        <span>Total Pledged &amp; Confirmed</span>
         <span class="lt-amount" id="ledgerTotalAmt">R 0</span>
       </div>
     </div>
@@ -988,7 +1008,9 @@ function renderTracker(data) {
   const goal=data.goal||3350;
   const donations=data.donations||[];
   const confirmed=donations.filter(d=>d.status==='confirmed');
-  const raised=confirmed.reduce((s,d)=>s+(d.amount||0),0);
+  const pledged=donations.filter(d=>d.status==='pledged');
+  // Binding pledges are formal commitments per the site's own pledge system — counted toward the goal alongside confirmed transfers.
+  const raised=confirmed.reduce((s,d)=>s+(d.amount||0),0)+pledged.reduce((s,d)=>s+(d.amount||0),0);
   const pct=Math.min(Math.round((raised/goal)*100),100);
   if(data.last_updated) document.getElementById('lastUpdated').textContent='Last updated: '+data.last_updated;
   setTimeout(()=>{
@@ -998,7 +1020,7 @@ function renderTracker(data) {
   setTimeout(()=>{
     animateCount(document.getElementById('raisedAmt'),raised,'R ','',1200);
     animateCount(document.getElementById('pctAmt'),pct,'','%',1200);
-    animateCount(document.getElementById('supporterCount'),confirmed.length,'','',1000);
+    animateCount(document.getElementById('supporterCount'),donations.length,'','',1000);
   },400);
   setTimeout(()=>{
     if(pct>=25) document.getElementById('ms25').classList.add('reached');
@@ -1006,6 +1028,18 @@ function renderTracker(data) {
     if(pct>=75) document.getElementById('ms75').classList.add('reached');
     if(pct>=100) document.getElementById('ms100').classList.add('reached');
   },1600);
+  if(pct>=100){
+    setTimeout(()=>{
+      const banner=document.getElementById('celebrationBanner');
+      const goalTitle=document.getElementById('goalTitleText');
+      const goalBox=document.getElementById('tracker');
+      if(banner) banner.classList.add('show');
+      if(goalTitle) goalTitle.textContent='🏆 DREAM FULLY FUNDED!';
+      if(goalBox) goalBox.classList.add('goal-reached');
+      launchConfetti();
+      setTimeout(launchConfetti,900);
+    },1800);
+  }
   const ledgerEl=document.getElementById('ledgerEntries');
   const totalEl=document.getElementById('ledgerTotal');
   const totalAmt=document.getElementById('ledgerTotalAmt');

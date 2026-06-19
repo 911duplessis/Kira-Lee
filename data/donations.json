@@ -2,6 +2,21 @@
   "_instructions": "Add each donation here. Zané updates this file via GitHub whenever a payment is received or a WhatsApp pledge is confirmed. Status: 'confirmed' = money received, 'pledged' = committed via WhatsApp.",
   "goal": 3350,
   "currency": "ZAR",
-  "last_updated": "2026-06-12",
-  "donations": []
+  "last_updated": "2026-06-18",
+  "donations": [
+    {
+      "name": "Stiaan du Plessis",
+      "amount": 1000,
+      "status": "pledged",
+      "date": "2026-06-18",
+      "message": "Go my Apiekind!"
+    },
+    {
+      "name": "Zané Bezuidenhout",
+      "amount": 2350,
+      "status": "pledged",
+      "date": "2026-06-18",
+      "message": "My Alles"
+    }
+  ]
 }
