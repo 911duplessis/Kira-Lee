@@ -238,6 +238,11 @@
     .tl-chips{display:flex;gap:8px;flex-wrap:wrap;}
     .tl-chip{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.8);font-size:11px;font-weight:800;padding:5px 12px;border-radius:20px;}
 
+    /* HIGHLIGHTS VIDEO */
+    #highlights{background:var(--cream);}
+    .video-wrap{max-width:760px;margin:0 auto;border-radius:18px;overflow:hidden;box-shadow:0 20px 50px rgba(13,31,78,.25);}
+    .video-wrap video{width:100%;display:block;background:var(--navy);}
+
     /* GALLERY */
     #gallery{background:var(--soft);}
     .gallery-grid{columns:4;column-gap:12px;}
@@ -441,6 +446,7 @@
   </a>
   <ul class="nav-links">
     <li><a href="#about">Story</a></li>
+    <li><a href="#highlights">Highlights</a></li>
     <li><a href="#gallery">Gallery</a></li>
     <li><a href="#donate" class="nav-donate-btn">♥ Donate</a></li>
   </ul>
@@ -624,6 +630,20 @@
           <div class="tl-chips"><span class="tl-chip">📍 Cape Town — Future Trip</span><span class="tl-chip">🌟 Pole Vault U13</span><span class="tl-chip">💪 The Journey Continues</span></div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- HIGHLIGHTS VIDEO -->
+<section id="highlights">
+  <div class="section-inner">
+    <div class="section-tag reveal">Match Highlights</div>
+    <h2 class="reveal">Kira-Lee On The <span class="gold">Field 🏑</span></h2>
+    <p class="section-lead reveal">A quick look at the action — and a big thank you to everyone backing her journey.</p>
+    <div class="video-wrap reveal">
+      <video controls playsinline preload="metadata" poster="images/kira-field.jpg">
+        <source src="images/kira-highlights.mp4" type="video/mp4" />
+      </video>
     </div>
   </div>
 </section>
